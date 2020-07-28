@@ -1,0 +1,12 @@
+.infobox {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+
+  h3 {
+    margin-bottom: 10px;
+  }
+}

@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { requestCards } from './redux/card/card.actions';
+import Navbar from './component/navbar/navbar.component';
+import ErrorBoundary from './component/error-boundary/error-boundary.component';
+import HomePage from './pages/homepage/homepage.component';
+import DetailPage from './pages/detail/detail.component';
+import AboutPage from './pages/about/about.component';
 import './App.css';
 
-function App() {
+const App = ({ requestCards }) => {
+  useEffect(() => {
+    requestCards();
+  }, [requestCards]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar />
+      <Switch>
+        <ErrorBoundary>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/detail' render={() => <Redirect to='/' />} />
+          <Route path='/detail/:userId' component={DetailPage} />
+          <Route path='/about' component={AboutPage} />
+        </ErrorBoundary>
+      </Switch>
     </div>
   );
-}
+};
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  requestCards: () => dispatch(requestCards())
+});
+
+export default connect(null, mapDispatchToProps)(App);

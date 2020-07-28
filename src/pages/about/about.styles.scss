@@ -1,0 +1,16 @@
+.about-page {
+  width: 60vw;
+  background-color: rgba(#eee, 0.75);
+  border-radius: 0.50rem;
+  margin: 5% auto;
+  padding: 50px 80px;
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+  .text {
+    margin-left: 10px;
+    line-height: 1.5rem;
+  }
+}

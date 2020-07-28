@@ -1,0 +1,13 @@
+@media only screen and (max-width: 1000px) {
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
