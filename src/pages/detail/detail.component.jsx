@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { selectCard } from '../../redux/card/card.selectors';
+import { selectUser } from '../../redux/card/card.selectors';
 import Avatar from '../../component/avatar/avatar.component';
 import InfoBox from '../../component/infobox/infobox.component';
 import './detail.styles.scss';
@@ -12,7 +12,7 @@ const DetailPage = ({ user, match }) => {
   return (
     <div className='detail-page'>
       <div className='side'>
-        <Avatar imageSrc={`/images/${userId}.jpg`} />
+        <Avatar imageSrc={`/images/user-${userId}.jpg`} />
         <InfoBox label='Name'>{name}</InfoBox>
         <InfoBox label='Email'>{email}</InfoBox>
         <InfoBox label='Website'>{website}</InfoBox>
@@ -37,8 +37,8 @@ const DetailPage = ({ user, match }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  user: selectCard(state)
+const mapStateToProps = (state, ownProps) => ({
+  user: selectUser(ownProps.match.params.userId)(state)
 });
 
 export default connect(mapStateToProps)(withRouter(React.memo(DetailPage)));
